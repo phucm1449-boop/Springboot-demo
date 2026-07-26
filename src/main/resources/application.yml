@@ -1,0 +1,28 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    url: ${DBMS_CONNECTION:jdbc:mysql://localhost:3306/shopapp} #jdbc:mysql://localhost:3306/shopapp?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DBMS_USERNAME:root}
+    password: ${DBMS_PASSWORD:123456789}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+api:
+  prefix: api/v1
+jwt:
+#  expiration: 3600 #30 days = 30 * 24 (h) * 60 (m) * 60 (s) = 2592000 (s)
+  valid-duration: 60 # in seconds. hết hạn sau 5s
+  refreshable-duration: 120 #có thể refresh được trong vòng 2 tiếng. trong khoảng thời gian này mình có thể refresh được 1 token và dài hơn khoảng thời gian valid của 1 token
+  secretKey: IQGm6RH10ht3VaEeTblrRPUPp6NuYYaLqfsH/pfI1+c=

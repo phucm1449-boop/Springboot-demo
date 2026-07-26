@@ -1,0 +1,9 @@
+jwt:
+  valid-duration: 7300
+  refreshable-duration: 72000
+#spring:
+#  datasource:
+#    url: ${DBMS_CONNECTION}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: ${DBMS_USERNAME}
+#    password: ${DBMS_PASSWORD}
