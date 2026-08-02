@@ -1,0 +1,37 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: shopapp-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: shopapp
+      MYSQL_ROOT_PASSWORD: 123456789
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456789"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  demo-service:
+    build: .
+    container_name: shopapp-app
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DBMS_CONNECTION: jdbc:mysql://mysql:3306/shopapp?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh&allowPublicKeyRetrieval=true
+      DBMS_USERNAME: root
+      DBMS_PASSWORD: 123456789
+    ports:
+      - "8088:8088"
+    volumes:
+      - uploads_data:/app/uploads
+
+volumes:
+  mysql_data:
+  uploads_data:
