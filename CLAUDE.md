@@ -22,7 +22,7 @@ Swagger UI is available at `http://localhost:8088/swagger-ui.html` when the app 
 
 ## Architecture
 
-**Spring Boot 3.5.6 / Java 17** REST API for an e-commerce shop. Base URL prefix: `api/v1`. MySQL database named `shopapp` (port 3306). Schema is **not auto-managed** (`ddl-auto: none`) — DDL changes must be applied manually. There is no `README.md`; several root-level `.md` files (`SPRING_SECURITY_FLOW.md`, `PLAN_permission_role.md`, `Task.md`, `ReviewNotes.md`, `oauth2ResourceServer_guide*.md`, `docs/security-dual-gate.md`) capture design history and are worth skimming when touching security or roles.
+**Spring Boot 3.5.6 / Java 17** REST API for an e-commerce shop. Base URL prefix: `api/v1`. MySQL database named `shopapp` (port 3306). Schema is managed by **Flyway** (`spring.jpa.hibernate.ddl-auto: validate` — Hibernate only checks the mapping against the DB, it never issues DDL). Migrations live in `src/main/resources/db/migration` (`V1__init_schema.sql`, `V2__seed_default_roles.sql`); add new versioned scripts there for any schema/data change rather than editing entities and letting Hibernate apply it. `spring.flyway.baseline-version: 2` lets pre-existing environments (created back when `ddl-auto: update` + `data.sql` managed the schema) adopt Flyway without re-running V1/V2 — a genuinely fresh database still runs both from scratch. There is no `README.md`; several root-level `.md` files (`SPRING_SECURITY_FLOW.md`, `PLAN_permission_role.md`, `Task.md`, `ReviewNotes.md`, `oauth2ResourceServer_guide*.md`, `docs/security-dual-gate.md`) capture design history and are worth skimming when touching security or roles.
 
 ### Package layout
 

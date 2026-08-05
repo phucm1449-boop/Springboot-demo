@@ -1,2 +1,0 @@
-INSERT INTO roles (id, name) SELECT 1, 'USER' WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'USER');
-INSERT INTO roles (id, name) SELECT 2, 'ADMIN' WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'ADMIN');
