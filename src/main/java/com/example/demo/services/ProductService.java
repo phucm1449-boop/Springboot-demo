@@ -28,7 +28,7 @@ public class ProductService implements IProductService{
     private final DTOMapper dtoMapper;
 
     @Override
-    public Product getProductById(long id) {
+    public Product getProductById(int id) {
         return productRepo.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.DATA_NOT_FOUND));
     }
@@ -63,7 +63,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product updateProduct(long id, ProductDTO productDTO) {
+    public Product updateProduct(int id, ProductDTO productDTO) {
         Product existingProduct = getProductById(id);
         if (existingProduct != null) {
             Category existingCategory = categoryRepo.findById(productDTO.getCategoryId())
@@ -82,7 +82,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void deleteProduct(long id) {
+    public void deleteProduct(int id) {
         Optional<Product> productOptional = productRepo.findById(id);
         productOptional.ifPresent(productRepo::delete);
     }
@@ -93,7 +93,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) {
+    public ProductImage createProductImage(Integer productId, ProductImageDTO productImageDTO) {
         Product existingProduct = productRepo.findById(productId)
                 .orElseThrow(() -> new AppException(ErrorCode.DATA_NOT_FOUND)) ;
         ProductImage newProductImage = ProductImage.builder()

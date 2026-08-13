@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserResponse {
-    Long id;
+    Integer id;
     String fullName;
     String phoneNumber;
     String address;

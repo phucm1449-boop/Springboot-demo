@@ -41,15 +41,15 @@ public class UserServiceTest {
     @BeforeEach
     public void initData() {
         dob = LocalDate.of(2001, 8, 22);
-        role = new Role(1L, "USER");
+        role = new Role(1, "USER");
         userDTO = UserDTO.builder()
                 .fullName("Mai Gia Phuc").phoneNumber("0854475387")
                 .address("Đây là USER nhé").password("22012007")
                 .retypePassword("22012007").dateOfBirth(dob)
                 .facebookAccountId(0).googleAccountId(0)
-                .roleId(1L)
+                .roleId(1)
                 .build();
-        user = User.builder().id(17L)
+        user = User.builder().id(17)
                 .fullName("Mai Gia Phuc").phoneNumber("0854475387")
                 .address("Đây là USER nhé").active(true)
                 .dateOfBirth(dob).facebookAccountId(0).googleAccountId(0)
@@ -65,7 +65,7 @@ public class UserServiceTest {
         Mockito.when(userRepo.existsByPhoneNumber(ArgumentMatchers.anyString()))
                 .thenReturn(false);
         // 2. Fake: "when asked for role with id=1, return the USER role"
-        Mockito.when(roleRepo.findById(1L))
+        Mockito.when(roleRepo.findById(1))
                 .thenReturn(Optional.of(role));
         // 3. Fake: "when saving any User, return our pre-built user object"
         Mockito.when(userRepo.save(ArgumentMatchers.any(User.class)))
@@ -82,7 +82,7 @@ public class UserServiceTest {
         User savedUser = captor.getValue();
 
         // THEN - kiểm tra kết quả trả về đúng không
-        assertThat(savedUser.getId()).isEqualTo(17L);
+        assertThat(savedUser.getId()).isEqualTo(17);
         assertThat(savedUser.getFullName()).isEqualTo("Mai Gia Phuc");
         assertThat(savedUser.getPhoneNumber()).isEqualTo("0854475387");
         assertThat(savedUser.getRole().getName()).isEqualTo("USER");

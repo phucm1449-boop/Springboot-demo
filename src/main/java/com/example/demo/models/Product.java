@@ -13,7 +13,7 @@ import lombok.*;
 public class Product extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name", nullable = false, length = 350)
     private String name;

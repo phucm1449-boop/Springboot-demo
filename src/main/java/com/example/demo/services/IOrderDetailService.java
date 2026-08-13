@@ -8,11 +8,11 @@ import java.util.List;
 public interface IOrderDetailService {
     OrderDetail createOrderDetail(OrderDetailDTO newOrderDetail) throws Exception;
 
-    OrderDetail getOrderDetail(Long id);
+    OrderDetail getOrderDetail(Integer id);
 
-    OrderDetail updateOrderDetail(Long id, OrderDetailDTO newOrderDetailData);
+    OrderDetail updateOrderDetail(Integer id, OrderDetailDTO newOrderDetailData);
 
-    void deleteById(Long id);
+    void deleteById(Integer id);
 
-    List<OrderDetail> findByOrderId(Long orderId);
+    List<OrderDetail> findByOrderId(Integer orderId);
 }

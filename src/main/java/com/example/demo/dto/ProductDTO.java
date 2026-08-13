@@ -34,6 +34,6 @@ public class ProductDTO {
 
     @JsonProperty("category_id")
     @Schema(name = "category_id", example = "1")
-    private Long categoryId;
+    private Integer categoryId;
 
 }

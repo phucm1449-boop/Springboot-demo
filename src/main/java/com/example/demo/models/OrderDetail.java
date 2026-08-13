@@ -15,7 +15,7 @@ public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "price", nullable = false)
     private Float price;

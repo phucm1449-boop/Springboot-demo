@@ -47,13 +47,13 @@ public class ProductServiceTest {
 
     @BeforeEach
     void initData() {
-        Long categoryId = 1L;
+        Integer categoryId = 1;
         category = Category.builder()
                 .id(categoryId)
                 .name("Laptop")
                 .build();
         product = Product.builder()
-                .id(1L)
+                .id(1)
                 .name("Laptop HP")
                 .description("Laptop HP made in Viet Nam")
                 .price(15000F)
@@ -71,21 +71,21 @@ public class ProductServiceTest {
 
     @Test
     void findById_success() {
-        when(productRepo.findById(1L))
+        when(productRepo.findById(1))
                 .thenReturn(Optional.of(product));
 
-        Product result = this.productService.getProductById(1L);
+        Product result = this.productService.getProductById(1);
 
 //        assertThat(result).isEqualTo(product);
-        verify(productRepo).findById(1L);
+        verify(productRepo).findById(1);
     }
 
     @Test
     void findById_fail_throwException() {
-        when(productRepo.findById(1L))
+        when(productRepo.findById(1))
                 .thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> productService.getProductById(1L))
+        assertThatThrownBy(() -> productService.getProductById(1))
         .isInstanceOf(AppException.class)
                 .extracting(e -> ((AppException) e).getErrorCode())
                 .isEqualTo(ErrorCode.DATA_NOT_FOUND);
@@ -93,19 +93,19 @@ public class ProductServiceTest {
 
     @Test
     void createProduct_success() {
-        when(categoryRepo.findById(1L)).thenReturn(Optional.of(category));
+        when(categoryRepo.findById(1)).thenReturn(Optional.of(category));
 
 //        when(productRepo.save(any(Product.class))).thenReturn(product);
         when(productRepo.save(any(Product.class)))
                 .thenAnswer(invocation -> {
                     Product p = invocation.getArgument(0);
-                    p.setId(1L);
+                    p.setId(1);
                     return p;
                 });
 
         Product result = productService.createProduct(productDTO);
 
-        assertThat(result.getId()).isEqualTo(1L);
+        assertThat(result.getId()).isEqualTo(1);
         assertThat(result.getName()).isEqualTo("Laptop HP");
         assertThat(result.getDescription()).isEqualTo("Laptop HP made in Viet Nam");
         assertThat(result.getPrice()).isEqualTo(15000F);
@@ -126,7 +126,7 @@ public class ProductServiceTest {
 
     @Test
     void createProduct_categoryNotFound_throwsException() {
-        when(categoryRepo.findById(1L)).thenReturn(Optional.empty());
+        when(categoryRepo.findById(1)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> productService.createProduct(productDTO))
                 .isInstanceOf(AppException.class)

@@ -57,7 +57,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderResponse getOrder(Long id) {
+    public OrderResponse getOrder(Integer id) {
         Order order = orderRepo.findById(id).orElse(null);
         modelMapper.typeMap(Order.class, OrderResponse.class)
                 .addMappings(mapper -> mapper.map(src -> src.getUser().getId(), OrderResponse::setUserId));
@@ -65,7 +65,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderResponse updateOrder(Long id, OrderDTO orderDTO) {
+    public OrderResponse updateOrder(Integer id, OrderDTO orderDTO) {
         Order existingOrder = orderRepo.findById(id).orElseThrow(() ->
                 new AppException(ErrorCode.DATA_NOT_FOUND));
         User existingUser = userRepo.findById(orderDTO.getUserId()).orElseThrow(() ->
@@ -86,7 +86,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public void deleteOrder(Long id) {
+    public void deleteOrder(Integer id) {
         Order existingOrders = orderRepo.findById(id).orElse(null);
         // không xóa cứng (trong DB) --> hãy xóa mềm
        if (existingOrders != null) {
@@ -96,7 +96,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<OrderResponse> getAllOrders(Long userId) {
+    public List<OrderResponse> getAllOrders(Integer userId) {
         List<Order> orders = orderRepo.findByUserId(userId);
 
         // Cấu hình ánh xạ user -> userId

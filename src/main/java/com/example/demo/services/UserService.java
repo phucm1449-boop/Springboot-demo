@@ -135,7 +135,7 @@ public class UserService implements IUserService {
 
     @Override
     @PostAuthorize("returnObject.phoneNumber == authentication.name")
-    public UserResponse getUserById(Long id) {
+    public UserResponse getUserById(Integer id) {
         log.info("In method getUserById");
         User user = this.userRepo.findById(id).orElseThrow(() -> new AppException(ErrorCode.DATA_NOT_FOUND));
         return dtoMapper.toUserResponse(user);

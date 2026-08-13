@@ -15,16 +15,16 @@ public interface IProductService {
 
     Product createProduct1(ProductDTO productDTO);
 
-    Product getProductById(long id);
+    Product getProductById(int id);
 
     // phân trang
     Page<ProductResponse> getAllProducts(PageRequest pageRequest);
 
-    Product updateProduct(long id, ProductDTO productDTO);
+    Product updateProduct(int id, ProductDTO productDTO);
 
-    void deleteProduct(long id);
+    void deleteProduct(int id);
 
     boolean existsByName(String name);
 
-    ProductImage createProductImage(Long productId, ProductImageDTO productImageDTO) throws Exception;
+    ProductImage createProductImage(Integer productId, ProductImageDTO productImageDTO) throws Exception;
 }

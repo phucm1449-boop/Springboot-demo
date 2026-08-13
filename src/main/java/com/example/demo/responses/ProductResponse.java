@@ -10,14 +10,14 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ProductResponse extends BaseResponse{
-    private Long id;
+    private Integer id;
     private String name;
     private Float price;
     private String thumbnail;
     private String description;
 
     @JsonProperty("category_id")
-    private Long categoryId;
+    private Integer categoryId;
 
     public static ProductResponse fromProduct(Product product) {
         ProductResponse productResponse = ProductResponse.builder()

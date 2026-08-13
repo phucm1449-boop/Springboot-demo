@@ -10,11 +10,11 @@ public interface IOrderService {
 
     OrderResponse createOrder(OrderDTO orderDTO) throws Exception;
 
-    OrderResponse getOrder(Long id);
+    OrderResponse getOrder(Integer id);
 
-    OrderResponse updateOrder(Long id, OrderDTO orderDTO);
+    OrderResponse updateOrder(Integer id, OrderDTO orderDTO);
 
-    void deleteOrder(Long id);
+    void deleteOrder(Integer id);
 
-    List<OrderResponse> getAllOrders(Long userId);
+    List<OrderResponse> getAllOrders(Integer userId);
 }

@@ -49,7 +49,7 @@ public class CategoryController {
     @PutMapping("/{id}")
     @Operation(summary = "Update a category")
     public ResponseEntity<String> updateCategory(
-            @PathVariable Long id,
+            @PathVariable Integer id,
             @Valid @RequestBody CategoryDTO categoryDTO) {
         categoryService.updateCategory(id, categoryDTO);
         return ResponseEntity.ok("updateCategory successfully ");
@@ -57,7 +57,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a category")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCategory(@PathVariable Integer id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok("deleteCategory with id " + id);
     }

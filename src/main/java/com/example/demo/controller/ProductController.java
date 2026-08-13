@@ -94,7 +94,7 @@ public class ProductController {
 
     @PostMapping(value = "uploads/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Upload one or more images for a product")
-    public ResponseEntity<?> uploadImage(@PathVariable Long id, @ModelAttribute("files") List<MultipartFile> files) {
+    public ResponseEntity<?> uploadImage(@PathVariable Integer id, @ModelAttribute("files") List<MultipartFile> files) {
         try {
             Product existingProduct = productService.getProductById(id);
             files = files == null ? new ArrayList<>() : files;
@@ -222,7 +222,7 @@ public class ProductController {
                     .price((float) faker.number().numberBetween(10, 90000000))
                     .description(faker.lorem().sentence())
                     .thumbnail("")
-                    .categoryId((long) faker.number().numberBetween(2, 5))
+                    .categoryId(faker.number().numberBetween(2, 5))
                     .build();
             try {
                 productService.createProduct(productDTO);
@@ -237,7 +237,7 @@ public class ProductController {
     @PutMapping("/{id}")
     @Operation(summary = "Update a product")
     public ApiResponse<?> updateProduct(
-            @PathVariable long id,
+            @PathVariable int id,
             @RequestBody ProductDTO productDTO) {
        ApiResponse<Product> apiResponse = new ApiResponse<>();
        apiResponse.setResult(productService.updateProduct(id, productDTO));

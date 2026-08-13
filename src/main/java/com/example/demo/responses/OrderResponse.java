@@ -11,10 +11,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderResponse extends BaseResponse {
-    private Long id;
+    private Integer id;
 
     @JsonProperty("user_id")
-    private Long userId;
+    private Integer userId;
 
     @JsonProperty("fullName")
     private String fullName;

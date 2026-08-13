@@ -19,7 +19,7 @@ public class CategoryService implements ICategoryService {
 //    }
 
     @Override
-    public Category getCategoryById(long id) {
+    public Category getCategoryById(int id) {
         return categoryRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
     }
@@ -38,7 +38,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public Category updateCategory(long categoryId, CategoryDTO categoryDTO) {
+    public Category updateCategory(int categoryId, CategoryDTO categoryDTO) {
         Category existinCategory = getCategoryById(categoryId);
         existinCategory.setName(categoryDTO.getName());
         categoryRepo.save(existinCategory);
@@ -46,7 +46,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public void deleteCategory(long id) {
+    public void deleteCategory(int id) {
         categoryRepo.deleteById(id);
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OrderRepo extends JpaRepository<Order, Long> {
+public interface OrderRepo extends JpaRepository<Order, Integer> {
     // tìm các đơn hàng của 1 user nào đó
-    List<Order> findByUserId(Long userId);
+    List<Order> findByUserId(Integer userId);
 }

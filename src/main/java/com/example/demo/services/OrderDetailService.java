@@ -39,13 +39,13 @@ public class OrderDetailService implements IOrderDetailService {
     }
 
     @Override
-    public OrderDetail getOrderDetail(Long id) {
+    public OrderDetail getOrderDetail(Integer id) {
         return orderDetailRepo.findById(id).orElseThrow(() ->
                 new AppException(ErrorCode.DATA_NOT_FOUND));
     }
 
     @Override
-    public OrderDetail updateOrderDetail(Long id, OrderDetailDTO newOrderDetailData) {
+    public OrderDetail updateOrderDetail(Integer id, OrderDetailDTO newOrderDetailData) {
         // tìm xem order detail có tồn tại không
         OrderDetail existingOrderDetail = getOrderDetail(id);
         Order existingOrder = orderRepo.findById(newOrderDetailData.getOrderId()).orElseThrow(() ->
@@ -62,12 +62,12 @@ public class OrderDetailService implements IOrderDetailService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         orderDetailRepo.deleteById(id);
     }
 
     @Override
-    public List<OrderDetail> findByOrderId(Long orderId) {
+    public List<OrderDetail> findByOrderId(Integer orderId) {
         return orderDetailRepo.findByOrderId(orderId);
     }
 }

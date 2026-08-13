@@ -10,13 +10,13 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class OrderDetailResponse {
-    private Long id;
+    private Integer id;
 
     @JsonProperty("order_id")
-    private Long orderId;
+    private Integer orderId;
 
     @JsonProperty("product_id")
-    private Long productId;
+    private Integer productId;
 
     @JsonProperty("price")
     private Float price;

@@ -63,15 +63,15 @@ public class UserControllerTest {
     @BeforeEach
     public void initData() {
         LocalDate dob = LocalDate.of(2001, 8, 22);
-        Role role = new Role(1L, "USER");
+        Role role = new Role(1, "USER");
         userDTO = UserDTO.builder()
                 .fullName("Mai Gia Phuc").phoneNumber("0854475387")
                 .address("Đây là USER nhé").password("22012007")
                 .retypePassword("22012007").dateOfBirth(dob)
                 .facebookAccountId(0).googleAccountId(0)
-                .roleId(1L)
+                .roleId(1)
                 .build();
-        user = User.builder().id(17L)
+        user = User.builder().id(17)
                 .fullName("Mai Gia Phuc").phoneNumber("0854475387")
                 .address("Đây là USER nhé").active(true)
                 .dateOfBirth(dob).facebookAccountId(0).googleAccountId(0)

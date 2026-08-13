@@ -56,5 +56,5 @@ public class UserDTO {
     @NotNull(message = "Role ID is required")
     @JsonProperty("role_id")
     @Schema(name = "role_id", example = "2")
-    private Long roleId;
+    private Integer roleId;
 }

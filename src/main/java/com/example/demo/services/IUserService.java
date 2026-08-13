@@ -14,7 +14,7 @@ public interface IUserService {
     String login(String phoneNumber, String password);
 
     List<UserResponse> getAllUsers();
-    UserResponse getUserById(Long id);
+    UserResponse getUserById(Integer id);
     UserResponse getMyInfo();
 
     void logout(String token);

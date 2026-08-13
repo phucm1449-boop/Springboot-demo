@@ -21,7 +21,7 @@ public class OrderDTO {
     @JsonProperty("user_id")
     @Min(value = 1, message = "User's ID must be > 0")
     @Schema(name = "user_id", example = "1")
-    private Long userId;
+    private Integer userId;
 
     @JsonProperty("fullname")
     @Schema(name = "fullname", example = "Nguyen Van A")

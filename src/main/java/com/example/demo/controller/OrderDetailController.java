@@ -37,7 +37,7 @@ public class OrderDetailController {
     @GetMapping("/{id}")
     @Operation(summary = "Get an order detail by id")
     public ResponseEntity<?> getOrderDetail(
-            @Valid @PathVariable("id") Long id) {
+            @Valid @PathVariable("id") Integer id) {
         try {
             OrderDetail orderDetail = orderDetailService.getOrderDetail(id);
             return ResponseEntity.ok().body(OrderDetailResponse.fromOrderDetail(orderDetail));
@@ -50,7 +50,7 @@ public class OrderDetailController {
     @GetMapping("/order/{orderId}")
     @Operation(summary = "List order details for an order")
     public ResponseEntity<?> getOrderDetails(
-            @Valid @PathVariable("orderId") Long orderId
+            @Valid @PathVariable("orderId") Integer orderId
     ) {
         List<OrderDetail> orderDetailList = orderDetailService.findByOrderId(orderId);
         List<OrderDetailResponse> orderDetailResponses = orderDetailList
@@ -63,7 +63,7 @@ public class OrderDetailController {
     @PutMapping("/{id}")
     @Operation(summary = "Update an order detail")
     public ResponseEntity<?> updateOrderDetail(
-            @Valid @PathVariable("id") Long id,
+            @Valid @PathVariable("id") Integer id,
             @RequestBody OrderDetailDTO orderDetailDTO) {
         try {
             OrderDetail orderDetail = orderDetailService.updateOrderDetail(id, orderDetailDTO);
@@ -75,7 +75,7 @@ public class OrderDetailController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete an order detail")
     public ResponseEntity<?> deleteOrderDetail(
-            @Valid @PathVariable("id") Long id) {
+            @Valid @PathVariable("id") Integer id) {
         orderDetailService.deleteById(id);
         return ResponseEntity.ok().body("deleteOrderDetail with id: " + id);
     }

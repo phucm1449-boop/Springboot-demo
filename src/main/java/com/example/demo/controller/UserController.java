@@ -112,7 +112,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ApiResponse<UserResponse> getUserById(@PathVariable Long id) {
+    public ApiResponse<UserResponse> getUserById(@PathVariable Integer id) {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
 
         log.info("Username (phoneNumber): {}", authentication.getName());

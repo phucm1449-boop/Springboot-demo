@@ -41,7 +41,7 @@ public class OrderController {
 
     @GetMapping("/user/{user_id}")//GET http://localhost:8088/api/v1/orders/user/4
     @Operation(summary = "List orders for a user")
-    public ResponseEntity<?> getOrders(@Valid @PathVariable long user_id) {
+    public ResponseEntity<?> getOrders(@Valid @PathVariable Integer user_id) {
         try {
             List<OrderResponse> orderResponseList = orderService.getAllOrders(user_id);
             return ResponseEntity.ok().body(orderResponseList);
@@ -52,7 +52,7 @@ public class OrderController {
 
     @GetMapping("/{id}")//GET http://localhost:8088/api/v1/orders/4
     @Operation(summary = "Get an order by id")
-    public ResponseEntity<?> getOrder(@Valid @PathVariable long id) {
+    public ResponseEntity<?> getOrder(@Valid @PathVariable Integer id) {
         try {
             OrderResponse existingOrderResponse = orderService.getOrder(id);
             return ResponseEntity.ok().body(existingOrderResponse);
@@ -63,7 +63,7 @@ public class OrderController {
 
     @PutMapping("/{id}")//GET http://localhost:8088/api/v1/orders/4
     @Operation(summary = "Update an order")
-    public ResponseEntity<?> updateOrder(@Valid @PathVariable long id, @Valid @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<?> updateOrder(@Valid @PathVariable Integer id, @Valid @RequestBody OrderDTO orderDTO) {
         try {
             OrderResponse orderResponse = orderService.updateOrder(id, orderDTO);
             return ResponseEntity.ok().body(orderResponse);
@@ -74,7 +74,7 @@ public class OrderController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete an order")
-    public ResponseEntity<String> deleteOrder(@Valid @PathVariable Long id) {
+    public ResponseEntity<String> deleteOrder(@Valid @PathVariable Integer id) {
         //xóa mềm => cập nhật trường active = false
         orderService.deleteOrder(id);
         return ResponseEntity.ok().body("deleteOrder");

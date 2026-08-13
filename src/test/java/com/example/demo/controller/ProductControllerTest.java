@@ -65,11 +65,11 @@ public class ProductControllerTest {
     @BeforeEach
     public void initData() {
         Category category = Category.builder()
-                .id(1L)
+                .id(1)
                 .name("Laptop")
                 .build();
         product = Product.builder()
-                .id(1L)
+                .id(1)
                 .name("Laptop HP")
                 .description("Laptop HP made in Viet Nam")
                 .price(15000F)
@@ -81,13 +81,13 @@ public class ProductControllerTest {
                 .description("Laptop HP made in Viet Nam")
                 .price(15000F)
                 .thumbnail("")
-                .categoryId(1L)
+                .categoryId(1)
                 .build();
     }
 
     @Test
     void getProductByID_success() throws Exception {
-        Mockito.when(productService.getProductById(1L)).thenReturn(product);
+        Mockito.when(productService.getProductById(1)).thenReturn(product);
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/v1/products/1"))
